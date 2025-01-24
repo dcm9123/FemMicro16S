@@ -1,6 +1,6 @@
 
 # FemMicro16S
-## Advancing the science of women’s health through open data sharing
+## Advancing the science of microbiome in children's and women's health through open data sharing
 <img width="300" alt="FemMicro_logo" src="https://github.com/dcm9123/FemMicro16S/blob/main/ef1b9ff4-c776-4dc1-b0fb-f732adb4c314.webp">
 
 [![Conda](https://img.shields.io/badge/conda-v22.11.1-lightgrey)](https://docs.conda.io/en/latest/)
