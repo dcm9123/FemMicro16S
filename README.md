@@ -308,7 +308,7 @@ python utils/scripts/common/prepare.py <DIR>
 
 ⚠️ **Note: Please make sure to change parameters in dada2_sbatch.sh and cluster.json files based on your SLURM HPC cluster resources before running the pipeline.**
 
-
+**Note2: I had to inspect the config.yaml file and remove all the tabs, as Snakemake does not like when the config file mixes spaces and indentations!
  ```bash
  snakemake -np
  ```
