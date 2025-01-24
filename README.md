@@ -351,3 +351,8 @@ To make sure that the pipeline is run completely, we need to check the log and o
 
 
 </details>
+
+Some issues I've encoutered are:
+1. The indentation of the config.yaml file, some are white spaces, and some are tabs. Fixed this through vim
+2. Make sure to have a space at the last two lines of the config file that has the database path to the GTDB and URE, if not, you'll get an error in the vsearch snakemake rule.
+3. Install phyloseq through conda, it won't work if you try anything else (believe me...)
