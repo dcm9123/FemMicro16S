@@ -213,7 +213,8 @@ install.packages("ggplot2")
 install.packages("dplyr")
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install("phyloseq") #This takes a while
+BiocManager::install("phyloseq") #This takes a while (this did not work for me, I had to do it through conda: conda install bioconda::bioconductor-phyloseq
+
 install.packages("remotes")
 remotes::install_github("cpauvert/psadd")
 BiocManager::install("limma")
