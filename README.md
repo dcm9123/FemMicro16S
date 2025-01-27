@@ -357,3 +357,4 @@ Some issues I've encoutered are:
 2. Make sure to have a space at the last two lines of the config file that has the database path to the GTDB and URE, if not, you'll get an error in the vsearch snakemake rule.
 3. Install phyloseq through conda, it won't work if you try anything else (believe me...)
 4. Install pandas through anaconda, the version it requires was in conflict with my existing python version.
+5. When a problem occurs along the snakemake pipeline, it's a good idea to run this command to see where the problem may occur: cd logs; for i in $(ls | grep "\.err"); do echo $i; grep -i "exit" < $i; done
