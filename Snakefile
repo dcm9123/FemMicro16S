@@ -4,7 +4,7 @@ import pandas as pd
 
 
 ##Input file
-configfile: "config.yaml"
+configfile:"config.yaml"
 list_files = pd.read_table(config['list_files'],index_col=0)
 SAMPLES = list(list_files.index)
 
@@ -15,8 +15,8 @@ myoutput = list()
 
 if config['primer_removal'] == True:
     myoutput.append(config["output_dir"] + "/seqkit_samples/" + "temp_primerRMV.txt")
-    myoutput.append(config["output_dir"] + "/primer_status/primer_existance_raw.csv")
-    myoutput.append(config["output_dir"] + "/primer_status/primer_existance_trimmed.csv")
+#    myoutput.append(config["output_dir"] + "/primer_status/primer_existance_raw.csv")
+#    myoutput.append(config["output_dir"] + "/primer_status/primer_existance_trimmed.csv")
 
 
 

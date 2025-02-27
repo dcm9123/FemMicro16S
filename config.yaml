@@ -6,21 +6,21 @@
 #*** inputs ***
 #**************
 
-# List of fastq files
+# List of files
 list_files: "samples/samples.tsv"
 
 #A path to where the raw fastq files are stored
-input_dir: "/home/data"   #With no slash at the end
+input_dir: "/bulk/sycuro_bulk/daniel/diabetes/UC_UT_collaboration/GF_Mouse_Fecal_Pellet_FASTQ_Files/plate3/fastq"   #With no slash at the end
 
 #The name of the output directory (not a path). Change this for not overwriting the output folder in case of rerunning the pipeline after changing some parameters.
-output_dir: "output"
+output_dir: "output_plate3_gtdb_only"
 
 #path of the main snakemake directory
-path: "/home/analysis/FemMicro16S"
+path: "/bulk/sycuro_bulk/daniel/diabetes/UC_UT_collaboration/FemMicro16S_Daniel/FemMicro16S"
 
 # Reads format
-forward_read_suffix: "_R1"
-reverse_read_suffix: "_R2"
+forward_read_suffix: "_R1_001"
+reverse_read_suffix: "_R2_001"
 
 # Reads compressed/decompressed
 compression_suffix: ".fastq.gz"     #".fastq.gz" or ".fastq"
@@ -35,13 +35,13 @@ compression_suffix: ".fastq.gz"     #".fastq.gz" or ".fastq"
 ## Removing primers if they were sequenced. 
 ##***If primers need to be removed set this to True and add the primer sequences***
 
-primer_removal: False  #True or False
+primer_removal: True  #True or False
 
 primers:
-fwd_primer: ""
-rev_primer: ""
-fwd_primer_rc: ""
-rev_primer_rc: ""
+fwd_primer: "ACACTGACGACATGGTTCTACAACTCCTRCGGGAGGCAGCAG"
+rev_primer: "CTGCTGCCTCCCGYAGGAGTTGTAGAACCATGTCGTCAGTGT"
+fwd_primer_rc: "TACGGTAGCAGAGACTTGGTCTGGACTACHVGGGTWTCTAAT"
+rev_primer_rc: "ATTAGAWACCCBDGTAGTCCAGACCAAGTCTCTGCTACCGTA"
 
 ## Primer detection parameters
 # minimum overlap length for primer removal
@@ -66,7 +66,7 @@ min_len: 50
 ## Positive control samples to visualize for qc report, write down sample names with | delimiter in between
 #Example "Zymostandard_S266_L001|Zymostandard_S258_L001"
 
-Positive_samples: ""
+Positive_samples: "Postive_Control_S89_L001_R1_001"
 
 
 
@@ -109,7 +109,7 @@ chimera_method: "consensus"
 
 
 #Initialize random number generator for reproducibility of taxonomy assignment
-seed: 100 
+seed: 100
 
 
 
@@ -119,7 +119,7 @@ seed: 100
 
 Identity: 0.993      # Minimum percent identity for a hit to be considered a match
 Maxaccepts: 30       # Maximum number of hits to consider per query
-URE_after_GTDB: False #True or False
+URE_after_GTDB: True #True or False
 
 
 
@@ -131,18 +131,18 @@ URE_after_GTDB: False #True or False
 RDP_dbs:
  RDP: "/bulk/IMCshared_bulk/shared/dbs/16s_dbs/rdp_train_set_18.fa.gz"
  Silva: "/bulk/IMCshared_bulk/shared/dbs/16s_dbs/silva_nr99_v138.1_train_set.fa.gz"
- GTDB: "/bulk/IMCshared_bulk/shared/dbs/16s_dbs/GTDB_bac120_arc53_ssu_r207_fullTaxo.fa.gz"
+ GTDB: "/bulk/IMCshared_bulk/shared/dbs/GTDB_16S_r220/GTDB_bac120_arc53_ssu_r220_fullTaxo.fa.gz"
  URE: "/bulk/IMCshared_bulk/shared/dbs/16s_dbs/UREv2.1_genus.fasta"
 
 RDP_species:
  RDP: "/bulk/IMCshared_bulk/shared/dbs/16s_dbs/rdp_species_assignment_18.fa.gz"
  Silva: "/bulk/IMCshared_bulk/shared/dbs/16s_dbs/silva_species_assignment_v138.1.fa.gz"
- GTDB: "/bulk/IMCshared_bulk/shared/dbs/16s_dbs/GTDB_bac120_arc53_ssu_r207_Species.fa.gz"  
+ GTDB: "/bulk/IMCshared_bulk/shared/dbs/GTDB_16S_r220/GTDB_bac120_arc53_ssu_r220_species.fa.gz"
  URE: "/bulk/IMCshared_bulk/shared/dbs/16s_dbs/UREv2.1_species.fasta"
- 
 
- 
+
+
 ## Taxonomy using vsearch
 vsearch_DBs: 
- GTDB: "/bulk/IMCshared_bulk/shared/dbs/16s_dbs/GTDB_bac120_arc53_ssu_r207_fullTaxo.fa.gz"
+ GTDB: "/bulk/IMCshared_bulk/shared/dbs/GTDB_16S_r220/GTDB_bac120_arc53_ssu_r220_fullTaxo.fa.gz"
  URE: "/bulk/IMCshared_bulk/shared/dbs/16s_dbs/UREv2.1_full_taxonomy_new.fasta"
