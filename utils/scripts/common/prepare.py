@@ -32,8 +32,19 @@ def process_file(file_path):
 def main(path):
     """The main processing function to handle file checks, creation of samples directory, and file processing."""
     if not os.path.isdir(path):
-        print(f"Input directory '{path}' does not exist. Exiting.")
-        return
+        print(f"Provided path '{path}' is not a directory or does not exist.")
+        sys.exit(1)
+
+    # Collect all .fastq or .fastq.gz files
+    fastq_files = [
+        f for f in os.listdir(path)
+        if f.endswith('.fastq') or f.endswith('.fastq.gz')
+    ]
+
+    # If no FASTQ files are found, exit with a message
+    if not fastq_files:
+        print("No FASTQ files (.fastq or .fastq.gz) found in the provided directory.")
+        sys.exit(1)
 
     # Check and possibly create a 'samples' directory
     samples_dir = 'samples'
@@ -58,13 +69,19 @@ def main(path):
     R1_files = [file for file in read_files if '_R1_' in file or '_1.' in file]
     R2_files = [file for file in read_files if '_R2_' in file or '_2.' in file]
 
+
     # Creating the final tab-delimited file
     with open(os.path.join(samples_dir, 'samples.tsv'), 'w') as output_file:
         output_file.write("Sample_ID\tR1\tR2\n")
-        for id in unique_sample_ids:
-            R1_file = next((file for file in R1_files if id in file), None)
-            R2_file = next((file for file in R2_files if id in file), None)
+        for id in sorted(unique_sample_ids):
+            R1_file = next((f for f in R1_files if re.split(r"_R[1-2]_|_R[1-2]\.|_[1-2]\.", os.path.basename(f))[0] == id), None)
+            R2_file = next((f for f in R2_files if re.split(r"_R[1-2]_|_R[1-2]\.|_[1-2]\.", os.path.basename(f))[0] == id), None) 
             output_file.write(f"{id}\t{R1_file}\t{R2_file}\n")
 
+
 if __name__ == "__main__":
+        # Pass the directory path as a command-line argument
+    if len(sys.argv) < 2:
+        print("Usage: python script.py <directory_path>")
+        sys.exit(1)
     main(sys.argv[1])
