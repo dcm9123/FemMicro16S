@@ -360,3 +360,4 @@ Some issues I've encoutered are:
 5. When a problem occurs along the snakemake pipeline, it's a good idea to run this command to see where the problem may occur: cd logs; for i in $(ls | grep "\.err"); do echo $i; grep -i "exit" < $i; done
 6. Make sure to install "KronaTools" properly. In my case, I couldn't do it through BiocManager or install.packages, I had to do it through anaconda.
 7. If you leave the primer removal as True, and the primers look like they have the adapters embedded in it, then it's better to remove the primer investigation rule (comment it out) from the qc_cutadapt.smk rule in the utils folder. This will still remove the adapter but the investigation will not be 'complete'
+8. Make sure to add 'sorted' in the prepare.py script, that way you ensure that the sample IDs are in order, and then the errorLearn script always gets trained on the same nucleotides of the same n number of samples.
